@@ -122,7 +122,7 @@ variable "block_device_mappings" {
       volume_type           = string
     })
   })))
-  default = {}
+  default = []
 }
 
 variable "instance_market_options" {
@@ -137,7 +137,7 @@ variable "instance_market_options" {
       valid_until                    = string
     })
   })))
-  default = {}
+  default = []
 }
 
 variable "placement" {
@@ -150,7 +150,7 @@ variable "placement" {
     spread_domain     = string,
     tenancy           = string
   })))
-  default = {}
+  default = []
 }
 
 variable "credit_specification" {
@@ -158,7 +158,7 @@ variable "credit_specification" {
   type = list(map(object({
     cpu_credits = string
   })))
-  default = {}
+  default = []
 }
 
 variable "elastic_gpu_specifications" {
@@ -166,7 +166,7 @@ variable "elastic_gpu_specifications" {
   type = list(map(object({
     type = string
   })))
-  default = {}
+  default = []
 }
 
 variable "disable_api_termination" {
