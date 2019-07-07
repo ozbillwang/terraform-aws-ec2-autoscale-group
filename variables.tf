@@ -108,7 +108,7 @@ variable "ebs_optimized" {
 
 variable "block_device_mappings" {
   description = "Specify volumes to attach to the instance besides the volumes specified by the AMI"
-  type = map(object({
+  type = list(map(object({
     device_name  = string,
     no_device    = string,
     virtual_name = string,
@@ -121,13 +121,13 @@ variable "block_device_mappings" {
       volume_size           = string,
       volume_type           = string
     })
-  }))
+  })))
   default = {}
 }
 
 variable "instance_market_options" {
   description = "The market (purchasing) option for the instances"
-  type = map(object({
+  type = list(map(object({
     market_type = string,
     spot_options = object({
       block_duration_minutes         = string,
@@ -136,36 +136,36 @@ variable "instance_market_options" {
       spot_instance_type             = string,
       valid_until                    = string
     })
-  }))
+  })))
   default = {}
 }
 
 variable "placement" {
   description = "The placement specifications of the instances"
-  type = map(object({
+  type = list(map(object({
     affinity          = string,
     availability_zone = string,
     group_name        = string,
     host_id           = string,
     spread_domain     = string,
     tenancy           = string
-  }))
+  })))
   default = {}
 }
 
 variable "credit_specification" {
   description = "Customize the credit specification of the instances"
-  type = map(object({
+  type = list(map(object({
     cpu_credits = string
-  }))
+  })))
   default = {}
 }
 
 variable "elastic_gpu_specifications" {
   description = "Specifications of Elastic GPU to attach to the instances"
-  type = map(object({
+  type = list(map(object({
     type = string
-  }))
+  })))
   default = {}
 }
 
