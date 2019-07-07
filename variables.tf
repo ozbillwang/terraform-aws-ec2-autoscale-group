@@ -112,7 +112,7 @@ variable "block_device_mappings" {
     device_name  = string,
     no_device    = string,
     virtual_name = string,
-    ebs = object({
+    ebs = map(object({
       delete_on_termination = string,
       encrypted             = string,
       iops                  = string,
@@ -120,7 +120,7 @@ variable "block_device_mappings" {
       snapshot_id           = string,
       volume_size           = string,
       volume_type           = string
-    })
+    }))
   })))
   default = []
 }
