@@ -108,32 +108,65 @@ variable "ebs_optimized" {
 
 variable "block_device_mappings" {
   description = "Specify volumes to attach to the instance besides the volumes specified by the AMI"
-  type        = map(string)
-  default     = {}
+  type = map(object({
+    device_name  = string,
+    no_device    = string,
+    virtual_name = string,
+    ebs = object({
+      delete_on_termination = string,
+      encrypted             = string,
+      iops                  = string,
+      kms_key_id            = string,
+      snapshot_id           = string,
+      volume_size           = string,
+      volume_type           = string
+    })
+  }))
+  default = {}
 }
 
 variable "instance_market_options" {
   description = "The market (purchasing) option for the instances"
-  type        = map(string)
-  default     = {}
+  type = map(object({
+    market_type = string,
+    spot_options = object({
+      block_duration_minutes         = string,
+      instance_interruption_behavior = string,
+      max_price                      = string,
+      spot_instance_type             = string,
+      valid_until                    = string
+    })
+  }))
+  default = {}
 }
 
 variable "placement" {
   description = "The placement specifications of the instances"
-  type        = map(string)
-  default     = {}
+  type = map(object({
+    affinity          = string,
+    availability_zone = string,
+    group_name        = string,
+    host_id           = string,
+    spread_domain     = string,
+    tenancy           = string
+  }))
+  default = {}
 }
 
 variable "credit_specification" {
   description = "Customize the credit specification of the instances"
-  type        = map(string)
-  default     = {}
+  type = map(object({
+    cpu_credits = string
+  }))
+  default = {}
 }
 
 variable "elastic_gpu_specifications" {
   description = "Specifications of Elastic GPU to attach to the instances"
-  type        = map(string)
-  default     = {}
+  type = map(object({
+    type = string
+  }))
+  default = {}
 }
 
 variable "disable_api_termination" {
